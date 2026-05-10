@@ -413,7 +413,7 @@
 
     <div class="photo-slot reveal">
       <!-- Drop your photo here: replace the div below with <img src="your-photo.jpg" alt="Mama"/> -->
-      <div class="photo-placeholder">
+      <img src="mama.jpg" alt="Mama"/>
         <span>🌸</span>
         Place her photo here
       </div>
