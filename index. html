@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>For Mama 🌸</title>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,300;0,400;1,300;1,400&family=Sacramento&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg:       #080d10;
+      --bg2:      #0c1318;
+      --gold:     #7ecac3;
+      --gold-lt:  #a8e2dc;
+      --rose:     #b07fa8;
+      --cream:    #ddeae8;
+      --muted:    #6a8a88;
+      --white:    #f4faf9;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--cream);
+      font-family: 'Lora', serif;
+      font-weight: 300;
+      overflow-x: hidden;
+      cursor: default;
+    }
+
+    /* ── NOISE GRAIN ── */
+    body::after {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 999;
+      opacity: 0.6;
+    }
+
+    /* ── SECTIONS ── */
+    section {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 24px;
+      position: relative;
+    }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 0.9s ease, transform 0.9s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ════════════════════════
+       §1  HERO
+    ════════════════════════ */
+    #hero {
+      background: radial-gradient(ellipse at 50% 60%, #0d2a2e 0%, var(--bg) 70%);
+      text-align: center;
+      gap: 20px;
+    }
+
+    .hero-eyebrow {
+      font-family: 'Lora', serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0;
+      animation: fadeUp 1.2s ease forwards 0.2s;
+    }
+
+    .hero-title {
+      font-family: 'Libre Baskerville', serif;
+      font-size: clamp(3.2rem, 11vw, 8rem);
+      font-weight: 700;
+      line-height: 1;
+      color: var(--white);
+      opacity: 0;
+      animation: fadeUp 1.2s ease forwards 0.6s;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--gold-lt);
+    }
+
+    .hero-script {
+      font-family: 'Sacramento', cursive;
+      font-size: clamp(1.4rem, 5vw, 2.8rem);
+      color: var(--rose);
+      opacity: 0;
+      animation: fadeUp 1.2s ease forwards 1s;
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      opacity: 0;
+      animation: fadeUp 1s ease forwards 1.8s;
+    }
+    .scroll-hint span {
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .scroll-line {
+      width: 1px;
+      height: 48px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+      animation: lineGrow 2s ease-in-out infinite;
+    }
+    @keyframes lineGrow {
+      0%, 100% { transform: scaleY(1); opacity: 0.6; }
+      50%       { transform: scaleY(1.3); opacity: 1; }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ════════════════════════
+       §2  COUNTER
+    ════════════════════════ */
+    #counter {
+      background: var(--bg2);
+      border-top: 1px solid #ffffff0a;
+      border-bottom: 1px solid #ffffff0a;
+      text-align: center;
+      gap: 16px;
+    }
+    .counter-num {
+      font-family: 'Libre Baskerville', serif;
+      font-size: clamp(4rem, 18vw, 12rem);
+      font-weight: 700;
+      line-height: 1;
+      color: var(--gold);
+      letter-spacing: -0.02em;
+    }
+    .counter-label {
+      font-size: clamp(0.8rem, 2vw, 1rem);
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .counter-sub {
+      font-style: italic;
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      color: var(--cream);
+      max-width: 520px;
+      line-height: 1.7;
+      margin-top: 8px;
+    }
+
+    /* ════════════════════════
+       §3  LETTER
+    ════════════════════════ */
+    #letter {
+      background: radial-gradient(ellipse at 30% 50%, #0a2a2866 0%, transparent 65%), var(--bg);
+      align-items: flex-start;
+    }
+
+    .letter-wrap {
+      max-width: 660px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .letter-tag {
+      font-size: 0.72rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 32px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .letter-tag::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, var(--gold), transparent);
+      max-width: 120px;
+    }
+
+    .letter-body {
+      font-size: clamp(1.05rem, 2.2vw, 1.22rem);
+      line-height: 2;
+      color: #d4c4b4;
+      font-style: italic;
+    }
+    .letter-body p + p { margin-top: 1.4em; }
+    .letter-body strong {
+      font-style: normal;
+      font-weight: 700;
+      color: var(--gold-lt);
+    }
+
+    .letter-sign {
+      margin-top: 48px;
+      font-family: 'Sacramento', cursive;
+      font-size: clamp(1.6rem, 5vw, 2.4rem);
+      color: var(--rose);
+      text-align: right;
+    }
+
+    /* photo placeholder */
+    .photo-slot {
+      width: 100%;
+      max-width: 420px;
+      aspect-ratio: 4/5;
+      margin: 0 auto 48px;
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+      border: 1px solid #ffffff11;
+    }
+    .photo-slot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: sepia(0.3) brightness(0.9);
+    }
+    .photo-slot .photo-placeholder {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #080f12, #0f2028);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+    .photo-slot .photo-placeholder span { font-size: 2rem; }
+
+    /* ════════════════════════
+       §4  REASONS
+    ════════════════════════ */
+    #reasons {
+      background: var(--bg2);
+      align-items: center;
+    }
+
+    .reasons-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+    .reasons-header h2 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: clamp(1.6rem, 4vw, 2.6rem);
+      font-weight: 400;
+      font-style: italic;
+      color: var(--white);
+    }
+    .reasons-header p {
+      margin-top: 10px;
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .reasons-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1px;
+      max-width: 900px;
+      width: 100%;
+      background: #ffffff08;
+      border: 1px solid #ffffff08;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .reason-item {
+      padding: 36px 32px;
+      background: var(--bg2);
+      transition: background 0.4s ease;
+      position: relative;
+    }
+    .reason-item:hover { background: #0c1e22; }
+
+    .reason-num {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+    .reason-text {
+      font-size: clamp(0.95rem, 1.8vw, 1.05rem);
+      line-height: 1.8;
+      color: #c4b4a4;
+    }
+    .reason-text strong {
+      color: var(--white);
+      font-weight: 700;
+    }
+
+    /* ════════════════════════
+       §5  CLOSING
+    ════════════════════════ */
+    #closing {
+      background: radial-gradient(ellipse at 60% 40%, #0d2a30 0%, var(--bg) 65%);
+      text-align: center;
+      gap: 24px;
+    }
+
+    .closing-icon {
+      font-size: 2.8rem;
+      animation: heartbeat 2.2s ease-in-out infinite;
+    }
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      14%       { transform: scale(1.18); }
+      28%       { transform: scale(1); }
+      42%       { transform: scale(1.12); }
+      56%       { transform: scale(1); }
+    }
+
+    .closing-title {
+      font-family: 'Libre Baskerville', serif;
+      font-size: clamp(1.8rem, 6vw, 3.6rem);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.15;
+    }
+    .closing-title em {
+      font-style: italic;
+      color: var(--gold-lt);
+    }
+
+    .closing-body {
+      max-width: 520px;
+      font-size: clamp(1rem, 2vw, 1.18rem);
+      line-height: 1.9;
+      color: #b0a090;
+      font-style: italic;
+    }
+
+    .closing-sign {
+      font-family: 'Sacramento', cursive;
+      font-size: clamp(1.8rem, 6vw, 3rem);
+      color: var(--rose);
+      margin-top: 8px;
+    }
+
+    .divider-line {
+      width: 60px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+      margin: 0 auto;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .reasons-grid { grid-template-columns: 1fr; }
+      section { padding: 60px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ §1 HERO ══ -->
+<section id="hero">
+  <p class="hero-eyebrow">A Mother's Day tribute · 2026</p>
+  <h1 class="hero-title">Happy<br/><em>Mother's</em><br/>Day.</h1>
+  <p class="hero-script">For the woman who is home.</p>
+  <div class="scroll-hint">
+    <span>Read on</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ══ §2 COUNTER ══ -->
+<section id="counter">
+  <div class="reveal">
+    <p class="counter-label">A lifetime of love</p>
+    <p class="counter-num">∞</p>
+    <p class="counter-sub">
+      No number is big enough. No words are wide enough.<br/>
+      But we try anyway — because you deserve it.
+    </p>
+  </div>
+</section>
+
+<!-- ══ §3 LETTER ══ -->
+<section id="letter">
+  <div class="letter-wrap">
+
+    <div class="photo-slot reveal">
+      <!-- Drop your photo here: replace the div below with <img src="your-photo.jpg" alt="Mama"/> -->
+      <div class="photo-placeholder">
+        <span>🌸</span>
+        Place her photo here
+      </div>
+    </div>
+
+    <div class="letter-tag reveal">A letter from the heart</div>
+
+    <div class="letter-body reveal">
+      <p>Dear Mama,</p>
+
+      <p>
+        There is a kind of love that doesn't announce itself — it just
+        <strong>shows up</strong>. In the early mornings before anyone else was awake.
+        In the meals made without being asked. In the way you always seemed to
+        know, even when I said nothing at all.
+      </p>
+
+      <p>
+        You have given me more than I can count and more than I will ever
+        fully understand. You gave me <strong>a sense of home</strong> that I carry
+        everywhere I go — into every room, every challenge, every dream I dare
+        to chase.
+      </p>
+
+      <p>
+        I know I don't always say it the way I should. But today, on this day,
+        I want you to know: <strong>everything good in me points back to you</strong>.
+        The patience. The warmth. The refusal to give up. All you.
+      </p>
+
+      <p>
+        Thank you for being exactly who you are — not just my mother,
+        but the person I look up to most in this world.
+      </p>
+
+      <p>Happy Mother's Day. 🌸</p>
+    </div>
+
+    <p class="letter-sign reveal">— With all my love, Fredrick Oindo 🖤</p>
+  </div>
+</section>
+
+<!-- ══ §4 REASONS ══ -->
+<section id="reasons">
+  <div class="reasons-header reveal">
+    <p>Why you matter to me.</p>
+    <h2>Six things I never say enough.</h2>
+  </div>
+
+  <div class="reasons-grid">
+    <div class="reason-item reveal">
+      <p class="reason-num">01</p>
+      <p class="reason-text">Because you taught me that <strong>strength doesn't shout</strong> — it quietly keeps going, day after day, without asking for applause.</p>
+    </div>
+    <div class="reason-item reveal">
+      <p class="reason-num">02</p>
+      <p class="reason-text">Because your laugh is the <strong>most comfortable sound</strong> in the world to me. Nothing else comes close.</p>
+    </div>
+    <div class="reason-item reveal">
+      <p class="reason-num">03</p>
+      <p class="reason-text">Because you believed in me <strong>before I believed in myself</strong> — and that belief became the ground I stand on.</p>
+    </div>
+    <div class="reason-item reveal">
+      <p class="reason-num">04</p>
+      <p class="reason-text">Because on the hardest days, knowing you exist in this world <strong>makes it easier</strong> to keep going.</p>
+    </div>
+    <div class="reason-item reveal">
+      <p class="reason-num">05</p>
+      <p class="reason-text">Because the sacrifices you made quietly, without ceremony — I see them. I <strong>always saw them</strong>. Thank you.</p>
+    </div>
+    <div class="reason-item reveal">
+      <p class="reason-num">06</p>
+      <p class="reason-text">Because being your child is the one thing I'd never trade — not for anything, <strong>not for the world</strong>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ §5 CLOSING ══ -->
+<section id="closing">
+  <div class="reveal closing-icon">🌸</div>
+  <div class="divider-line reveal"></div>
+  <h2 class="closing-title reveal">Here's to you,<br/><em>always.</em></h2>
+  <p class="closing-body reveal">
+    May today feel as warm as the love you've poured into a lifetime of
+    being there. You are not just celebrated today — you are cherished,
+    always.
+  </p>
+  <p class="closing-sign reveal">Happy Mother's Day, Mama 💛</p>
+</section>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
